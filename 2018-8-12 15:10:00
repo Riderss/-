@@ -1,0 +1,24 @@
+//设计一个算法，求交集
+void Intersection(SqList A,SqList B,SqList &C){
+  int i,j,k=0;
+  for(i=0;i<A.length;i++){
+    for(j=0;j<B.length;j++){
+      while(A.data[i]==B.data[j]){
+        C.data[k++]=A.data[i];
+      }  
+    }
+  }
+  C.length=k;
+}
+//时间复杂度O(m*n)，空间复杂度(1)
+
+//对有序顺序表，改进效率
+void Intersection(SqList A,SqList B,SqList &C){
+  int i=0,j=0,k=0;
+  for(i;i<B.length;i++){
+    while(A.data[i]>B.data[j])j++;
+    if(A.data[i]==B.data[j])C.data[k++]=A.data[i];
+  }
+}
+//  A.data[i]>B.data[j]?B.data[j++]:A.data[i++];
+//因看到答案极其简单暴力，瞬间失去了学的兴致，改日再码！！
