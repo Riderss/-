@@ -29,14 +29,14 @@ void PreOrder(BTNode *b){
     top++;                        //根节点进栈
     St[top]=b;
     while(top>-1){                //栈不空时循环
-      p=St[top];
+      p=St[top];                  //退栈并访问该节点
       top--;
       printf("%c",p->data);
-      if(p->rchild!=NULL){
+      if(p->rchild!=NULL){        //右孩子进栈
         top++;
         St[top]=p->rchild;
       }
-       if(p->lchild!=NULL){
+       if(p->lchild!=NULL){       //左孩子进栈
         top++;
         St[top]=p->lchild;
       }
