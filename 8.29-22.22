@@ -1,0 +1,46 @@
+typedef struct{
+  ElemType data;
+  int pos;
+}STree[MaxSize];
+typedef struct tnode{
+  ElemType data;
+  struct tnode *child[M];
+}CTree;
+typedef struct cbnode{
+  ElemType data;
+  struct cbnode child;
+  struct cbnode brother;
+}cbtree;
+
+
+//先序序列构造二叉树
+void PreOrder(BTNode *b){
+  if(b!=NULL){
+    printf("%d",b->data);
+    PreOrder(b->lchild);
+    PreOrder(b->rchild);
+  }
+}
+
+void PreOrder(BTNode *b){
+  BTNode *St[MaxSize]，*p;
+  int top=-1;
+  if(b!=NULL){
+    top++;                        //根节点进栈
+    St[top]=b;
+    while(top>-1){                //栈不空时循环
+      p=St[top];
+      top--;
+      printf("%c",p->data);
+      if(p->rchild!=NULL){
+        top++;
+        St[top]=p->rchild;
+      }
+       if(p->lchild!=NULL){
+        top++;
+        St[top]=p->lchild;
+      }
+    }
+    printf("\n");
+  }
+}
