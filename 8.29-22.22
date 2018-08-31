@@ -44,3 +44,81 @@ void PreOrder(BTNode *b){
     printf("\n");
   }
 }
+
+
+//后续遍历费低轨
+void PostOrder(BTree *b){
+  BTree *St[Maxsize],*p;
+  int top=-1,flag;
+  if(b！=NULL){
+    do{
+      while(b!=NULL){
+        top++;
+        St[top]=b;
+        b=b->lchild;  
+      }
+      p=NULL;
+      flag=1;
+      while(top!=-1&&flag){
+        b=St[top];
+        if(b->rchild==p)
+        {  printf("%c",b->data);
+           top--;
+           p=b;
+        }
+        else{
+           b=b->rchild;
+           flag=0;
+        }
+      }
+    }while(top!=-1);
+    printf("\n");
+  }
+}  
+//层次遍历
+void LeverOrder(BTNode *b){
+  BTNode *p;
+  BTNode *qu[Maxsize];
+  int front,rear;
+  front=rear=0;
+  rear++;
+  qu[rear]=b;
+  while(front!=rear){
+    front=(front+1)%Maxsize;
+    p=qu[front];
+    printf("%c",p->data);
+    if(p->lchild!=NULL){
+      rear=(rear+1)%Maxsize;
+      qu[rear]=p->lchild;
+    }
+    if(p->rchild!=NULL){
+      rear=(rear+1)%Maxsize;
+      qu[rear]=p->rchild;
+    }
+  }
+}
+  
+void CreatBTNode(BTNode *&b,char *str){
+  BTNode *St[maxsize],*p=NULL;
+  int top=-1,k,j=0;char ch;
+  b=NULL;
+  ch=str[j];
+  while(ch!='\0'){
+    switch(ch){
+      case'(':top++,St[top]=p;k=1;break;
+      case')':top--;break;
+      case',':k=2;break;
+      default:p=(BTNode *)malloc(sizeof(BTNode));
+        p->data=ch;p->lchild=p->rchild=NULL;
+        if(b==NULL)b=p;
+        else{
+          switch(k){
+            case1:St[top]->lchild=p;break;
+            case2:St[top]->rchild=p;break;
+          }
+        }
+    }
+    ch=str[++j];
+  }
+} 
+  
