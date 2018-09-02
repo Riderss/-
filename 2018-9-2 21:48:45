@@ -1,0 +1,37 @@
+//头插法
+void(linklist &L,int n){
+  int x;linklist s;
+  L=(linklist)malloc(sizeof(LNode))
+  L->next=NULL;
+  for(int i=0;i<n;i++){
+    scanf("%d",&x);
+    s=(linklist)malloc(sizeof(LNode));
+    s->next=L->next;
+    L->next=s;
+  }
+}
+//尾插
+void creatlist(linklist &L,int n){
+  intx;linklist *r,*s;
+  L=(linklist)malloc(sizeof(LNode));
+  L->next=NULL;r=L;
+  for(int i=0;i<n;i++){
+    scanf("%d",&x);
+    s=(linklist)malloc(sizeof(LNode));
+    s->next=r->Next;
+    r->next=s;
+    r=s;
+  }
+}
+//压栈
+bool push(SqStack &S,int x){
+  if(S.top==maxsize-1)return 0;
+  S.data[++top]=x
+  return 1;
+}
+//退栈
+bool(SqStack &S,int &x){
+  if(top==-1）return 0;
+  x=S.data[top--];
+  return 1;
+}
